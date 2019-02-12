@@ -1,0 +1,28 @@
+{
+  "name": "clamps",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./dist/clamps.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "compile": "npx babel src/clamps.js -o dist/clamps.js --presets=@babel/preset-env",
+    "compile-min": "npx babel src/clamps.js -o dist/clamps.min.js --presets=@babel/preset-env,babel-preset-minify",
+    "build": "npm run compile && npm run compile-min"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/laurenashpole/clamps.git"
+  },
+  "author": "Lauren Ashpole",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/laurenashpole/clamps/issues"
+  },
+  "homepage": "https://github.com/laurenashpole/clamps#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.3.1",
+    "babel-preset-minify": "^0.5.0"
+  }
+}
