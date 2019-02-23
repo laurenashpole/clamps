@@ -1,1 +1,344 @@
-Project Page
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Clamps - Line Clamp JS Library </title>
+
+    <link href="https://fonts.googleapis.com/css?family=Rubik:400,700" rel="stylesheet">
+
+    <style>
+      *, *:before, *:after {
+        box-sizing: border-box;
+      }
+
+      body {
+        background: #f1f1f1;
+        margin: 0;
+        border-top: 6px solid #202020;
+        padding: 0;
+        color: #202020;
+        font-family: 'Rubik', 'Helvetica', sans-serif;
+      }
+
+      h1,
+      h2 {
+        margin: 0;
+        letter-spacing: 0.02em;
+      }
+
+      h1 {
+        font-size: 2.5em;
+      }
+
+      h2 {
+        margin: 45px auto 15px auto;
+      }
+
+      a {
+        color: #da3725;
+      }
+
+      img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      .header {
+        background: #fff;
+        padding: 70px 0 75px 0;
+      }
+
+      .header__dek {
+        margin: 24px 0 16px 0;
+        line-height: 24px;
+      }
+
+      .header__cta {
+        margin-top: 15px;
+        border: 2px solid #da3725;
+        border-radius: 6px;
+        padding: 15px 20px;
+        display: inline-block;
+        text-decoration: none;
+        letter-spacing: 0.02em;
+        transition: 0.2s background;
+      }
+
+      .header__cta:focus,
+      .header__cta:hover {
+        background: #da3725;
+        color: #fff;
+      }
+
+      .container {
+        padding: 0 15px;
+      }
+
+      .grid {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .card {
+        background: #fff;
+        margin-bottom: 15px;
+        border-radius: 6px;
+        overflow: hidden;
+      }
+
+      .card__text {
+        padding: 30px;
+      }
+
+      .card__lines {
+        max-height: 120px;
+        display: -webkit-box;
+        -webkit-line-clamp: 5;
+        -webkit-box-orient: vertical;
+        line-height: 24px;
+        overflow: hidden;
+      }
+
+      .grid .card {
+        width: calc(50% - 7.5px);
+      }
+
+      .grid .card:first-child {
+        width: 100%;
+      }
+
+      .grid .card .card__text {
+        padding: 15px;
+      }
+
+      .grid .card .card__lines {
+        max-height: 72px;
+        -webkit-line-clamp: 3;
+      }
+
+      .grid .card:first-child .card__lines {
+        max-height: 96px;
+        -webkit-line-clamp: 4;
+      }
+
+      .footer {
+        background: #202020;
+        margin-top: 45px;
+        padding: 30px 0;
+        color: rgba(255, 255, 255, 0.5);
+      }
+
+      .footer a {
+        border-color: rgba(255, 255, 255, 0.5);
+        color: rgba(255, 255, 255, 0.5);
+        text-decoration: none;
+        transition: 0.2s border-color, 0.2s color;
+      }
+
+      .footer a:focus,
+      .footer a:hover {
+        border-color: #fff;
+        color: #fff;
+      }
+
+      .footer__credit {
+        display: flex;
+        align-items: center;
+      }
+
+      .footer__credit svg {
+        width: 80px;
+        margin-right: 15px;
+        border-right: 1px solid;
+        padding: 5px 15px 5px 0;
+      }
+
+      .footer__links {
+        width: 100%;
+        margin-top: 45px;
+        line-height: 1.75em;
+      }
+
+      @media (min-width: 768px) {
+        h2 {
+          margin: 75px 0 30px 0;
+        }
+
+        .header {
+          padding: 85px 0 90px 0;
+        }
+
+        .header__dek {
+          width: 75%;
+          margin: 38px 0 30px 0;
+          font-size: 18px;
+          line-height: 28px;
+        }
+
+        .container {
+          max-width: 960px;
+          margin: 0 auto;
+          padding: 0 30px;
+        }
+
+        .card {
+          margin-bottom: 30px;
+        }
+
+        .card__text {
+          padding: 45px;
+        }
+
+        .card__lines {
+          max-height: 140px;
+          font-size: 18px;
+          line-height: 28px;
+        }
+
+        .grid .card {
+          width: calc(33.333% - 20px);
+        }
+
+        .grid .card .card__text {
+          padding: 30px;
+        }
+
+        .grid .card .card__lines {
+          max-height: 48px;
+          font-size: 16px;
+          line-height: 24px;
+          -webkit-line-clamp: 2;
+        }
+
+        .grid .card:nth-child(5n+1),
+        .grid .card:nth-child(5n+2) {
+          width: calc(50% - 15px);
+        }
+
+        .grid .card:nth-child(5n+1) .card__lines,
+        .grid .card:nth-child(5n+2) .card__lines {
+          max-height: 72px;
+          -webkit-line-clamp: 3;
+        }
+
+        .footer {
+          margin-top: 60px;
+          padding: 45px 0;
+        }
+
+        .footer__links {
+          width: auto;
+          margin: 0;
+          text-align: right;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <div class="container">
+        <h1>Clamps Demo</h1>
+        <p class="header__dek">Clamps is a lightweight JavaScript module that mimics the -webkit-line-clamp CSS property on browsers that don't natively support it (<a href="https://caniuse.com/#feat=css-line-clamp">Can I use</a> details). To get the most out of this demo, open the page on a browser without support like Firefox or IE and compare the results with Chrome or Safari.</p>
+        <a class="header__cta" href="https://github.com/laurenashpole/clamps">View on Github</a>
+      </div>
+    </header>
+
+    <div class="container">
+      <h2>Basic Usage</h2>
+      <div class="card card--wide">
+        <div class="card__text">
+          <div class="card__lines js-line-clamp">OK, this has gotta stop. I'm going to remind Fry of his humanity the way only a woman can. Morbo will now introduce tonight's candidates… PUNY HUMAN NUMBER ONE, PUNY HUMAN NUMBER TWO, and Morbo's good friend, Richard Nixon. Oh, all right, I am. But if anything happens to me, tell them I died robbing some old man. Son, as your lawyer, I declare y'all are in a 12-piece bucket o' trouble. But I done struck you a deal: Five hours of community service cleanin' up that ol' mess you caused. Are you crazy? I can't swallow that. Come, Comrade Bender! We must take to the streets! So I really am important? How I feel when I'm drunk is correct? This is the worst part. The calm before the battle.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <h2>With nested DOM nodes</h2>
+      <div class="card card--wide">
+        <div class="card__text">
+          <div class="card__lines js-line-clamp">When I was <strong>first asked to make a film</strong> about my nephew, <a href="https://theinfosphere.org/Professor_Hubert_J._Farnsworth">Hubert Farnsworth</a>, I thought "Why should I?" Then later, Leela made the film. But if I did make it, you can bet there would have been more topless women on motorcycles. Roll film! With a warning label this big, you know they gotta be fun! Oh, how I wish I could believe or understand that! There's only one reasonable course of action now: kill Flexo! I love this planet! I've got wealth, fame, and access to the depths of sleaze that those things bring. Yes, if you make it look like an electrical fire. When you do things right, people won't be sure you've done anything at all.
+          </div>
+        </div>
+      </div>
+
+      <h2>With :nth-child and breakpoints</h2>
+      <section class="grid">
+        <div class="card">
+          <img src="img/1022441.jpg" alt="Example robot photo" />
+          <div class="card__text">
+            <div class="card__lines js-line-clamp">In your time, yes, but nowadays shut up! Besides, these are adult stem cells, harvested from perfectly healthy adults whom I killed for their stemcells. Yeah, lots of people did. Wow, you got that off the Internet?</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="img/387387.jpg" alt="Example robot photo" />
+          <div class="card__text">
+            <div class="card__lines js-line-clamp">I'll get my kit! Actually, that's still true. I usually try to keep my sadness pent up inside where it can fester quietly as a mental illness. Say what? This is the worst kind of discrimination: the kind against me!</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="img/266849.jpg" alt="Example robot photo" />
+          <div class="card__text">
+            <div class="card__lines js-line-clamp">Meh. Hello Morbo, how's the family? Well, thanks to the Internet, I'm now bored with sex. Is there a place on the web that panders to my lust for violence? How much did you make me? No, just a regular mistake.</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="img/53603.jpg" alt="Example robot photo" />
+          <div class="card__text">
+            <div class="card__lines js-line-clamp">Also Zoidberg. Good news, everyone! There's a report on TV with some very bad news! Hey, what kinda party is this? There's no booze and only one hooker. Who's brave enough to fly into something we all keep calling a death sphere?</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="img/177959.jpg" alt="Example robot photo" />
+          <div class="card__text">
+            <div class="card__lines js-line-clamp">Yes, except the Dave Matthews Band doesn't rock. Humans dating robots is sick. You people wonder why I'm still single? It's 'cause all the fine robot sisters are dating humans!</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="img/1838418.jpg" alt="Example robot photo" />
+          <div class="card__text">
+            <div class="card__lines js-line-clamp">You can crush me but you can't crush my spirit! Oh, I think we should just stay friends. Yeah, and if you were the pope they'd be all, "Straighten your pope hat." And "Put on your good vestments." Quite possible. We live long and are celebrated poopers.</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="img/680961.jpg" alt="Example robot photo" />
+          <div class="card__text">
+            <div class="card__lines js-line-clamp">Guards! Bring me the forms I need to fill out to have her taken away! Dear God, they'll be killed on our doorstep! And there's no trash pickup until January 3rd. So, how 'bout them Knicks? Look, last night was a mistake.</div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <footer class="footer">
+      <div class="container grid">
+        <a class="footer__credit" href="https://www.laurenashpole.com">
+          <svg viewBox="0 0 106 49"><path d="M56.35 1.5c-1.7.7-4.6 3.15-6.4 5.4-4.15 5.15-9 6.75-15.8 5.1-10.6-2.6-10.8-2.6-9 .1 1.85 2.85 6.8 4.75 12.3 4.85l4 .05-5.95 6-5.95 6h-6.3C12.55 29 1 36.25 1 42.95c0 7.95 9.7 6.95 21.9-2.35 2.95-2.25 5.95-4.55 6.7-5.05 2.1-1.55 22.65 4.9 28.6 9 7.3 5 17.7 4.45 24-1.25 1.65-1.5 1.95-1.45 3.9.3 3.25 2.95 15 2.75 18.1-.35 3-3 1.2-5.2-2.7-3.4-6.3 2.85-14.5.35-14.5-4.4 0-3.85-2.7-3-7.85 2.55-5.85 6.3-9.4 7.45-15.05 4.95-5.4-2.45-5.25-2.85 2.65-6.95C73.95 32.3 85 22.45 85 19.75c0-1.75-4.15-5.05-7.8-6.2-5.2-1.6-21.1 9.45-24.7 17.2-1 2.05-1.9 3.9-2.05 4.1C50 35.35 36 30.7 36 30.05c0-.7 12.35-12.9 19.75-19.6 7.1-6.35 7.45-11.85.6-8.95zm21.5 16.8c2.8 3.4-9.05 13.9-19 16.75-4.25 1.2-3.65-.9 1.9-7.1 7.5-8.35 14.75-12.45 17.1-9.65zm-53.9 15.45c0 .9-7.05 6.25-12.2 9.25-6.25 3.65-6.5-.1-.35-5.7 4.5-4 12.7-6.35 12.55-3.55z" fill="currentColor"></path></svg>
+          Visit my site
+        </a>
+        <div class="footer__links">
+          Images from <a href="https://morbotron.com/">Morbotron</a><br />
+          Lorem Ipsum from <a href="http://fillerama.io/">Fillerama</a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="js/clamps.min.js"></script>
+
+    <script>
+      window.onload = function () {
+        var els = document.querySelectorAll('.js-line-clamp');
+        window.Clamps(els);
+      };
+    </script>
+  </body>
+</html>
