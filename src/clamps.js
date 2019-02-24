@@ -47,7 +47,7 @@ function clampLine (node) {
   for(let i = textNode.childNodes.length; i >= 0; i--) {
     const childNode = textNode.childNodes[i];
 
-    if (childNode) {
+    if (childNode && (childNode.nodeType === 1 || childNode.nodeType === 3)) {
       while (textNode.clientHeight > maxHeight && childNode.textContent) {
         childNode.textContent = childNode.textContent.replace(/\W*\s*$/, '').replace(/.$/, '\u2026');
       }
