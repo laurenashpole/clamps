@@ -44,12 +44,17 @@ function clampLine (node) {
     return false;
   }
 
-  for(let i = textNode.childNodes.length; i >= 0; i--) {
+  for (let i = textNode.childNodes.length; i >= 0; i--) {
     const childNode = textNode.childNodes[i];
 
     if (childNode && (childNode.nodeType === 1 || childNode.nodeType === 3)) {
-      while (textNode.clientHeight > maxHeight && childNode.textContent) {
-        childNode.textContent = childNode.textContent.replace(/\W*\s*$/, '').replace(/.$/, '\u2026');
+      let textContent = childNode.textContent;
+      let textLength = textContent.length;
+
+      while (textNode.clientHeight > maxHeight && textLength > 1) {
+        textContent = textContent.substr(0, textLength - 1);
+        textLength = textContent.length;
+        childNode.textContent = textContent + '\u2026';
       }
     }
   }

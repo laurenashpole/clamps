@@ -50,8 +50,13 @@ function clampLine(node) {
     var childNode = textNode.childNodes[i];
 
     if (childNode && (childNode.nodeType === 1 || childNode.nodeType === 3)) {
-      while (textNode.clientHeight > maxHeight && childNode.textContent) {
-        childNode.textContent = childNode.textContent.replace(/\W*\s*$/, '').replace(/.$/, "\u2026");
+      var textContent = childNode.textContent;
+      var textLength = textContent.length;
+
+      while (textNode.clientHeight > maxHeight && textLength > 1) {
+        textContent = textContent.substr(0, textLength - 1);
+        textLength = textContent.length;
+        childNode.textContent = textContent + "\u2026";
       }
     }
   }
