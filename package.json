@@ -1,10 +1,17 @@
 {
   "name": "clamps",
   "version": "1.0.0",
-  "description": "",
+  "description": "A lightweight, Vanilla JS fallback for browsers without -webkit-line-clamp support.",
+  "keywords": [
+    "line-clamp",
+    "-webkit-line-clamp",
+    "ellipsis",
+    "truncate"
+  ],
+  "author": "Lauren Ashpole",
+  "license": "MIT",
   "main": "./dist/clamps.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "compile": "npx babel src/clamps.js -o dist/clamps.js --presets=@babel/preset-env",
     "compile-min": "npm run compile && minify dist/clamps.js -o dist/clamps.min.js",
     "build": "npm run compile-min && npm run compile"
@@ -13,8 +20,6 @@
     "type": "git",
     "url": "git+https://github.com/laurenashpole/clamps.git"
   },
-  "author": "Lauren Ashpole",
-  "license": "MIT",
   "bugs": {
     "url": "https://github.com/laurenashpole/clamps/issues"
   },
