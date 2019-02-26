@@ -8,15 +8,21 @@ There are already a lot of great text truncation options out there (for example,
 
 ### NPM
 
-`npm install clamps --save`
+```
+npm install clamps --save
+```
 
 ### Yarn
 
-`yarn add clamps`
+```
+yarn add clamps
+```
 
 ### Script Tag
 
-`<script src="path/to/clamps.min.js"></script>`
+```
+<script src="path/to/clamps.min.js"></script>
+```
 
 ## Usage
 
